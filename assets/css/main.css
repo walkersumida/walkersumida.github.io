@@ -1,0 +1,35 @@
+body {
+  padding-bottom: 150px;
+  font-family: Gothic MB101 Light, Hiragino Kaku Gothic W3 JIS2004, 'メイリオ', Meiryo, Verdana, 'ＭＳ Ｐゴシック', sans-serif;
+  color: rgba(0,0,0,.87);
+  -webkit-font-smoothing: antialiased;
+}
+.grid-style {
+  margin-bottom: 20px
+}
+.card-style {
+  height: 300px
+}
+.card-image {
+  width: 200px;
+  margin: auto;
+}
+.title {
+  margin: 30px 0 15px 0;
+}
+.sns {
+  display: inline-block;
+  margin: 0 5px;
+}
+.sns a {
+  color: grey;
+}
+.sns-twitter a:hover {
+  color: #1DA1F2;
+}
+.sns-facebook a:hover {
+  color: #4267B2;
+}
+.sns-github a:hover {
+  color: black;
+}
