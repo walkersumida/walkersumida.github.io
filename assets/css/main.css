@@ -4,6 +4,13 @@ body {
   color: rgba(0,0,0,.87);
   -webkit-font-smoothing: antialiased;
 }
+.top-card {
+  border: none;
+}
+.avatar-img {
+  width: 250px;
+  margin: 0 auto;
+}
 .grid-style {
   margin-bottom: 20px
 }
