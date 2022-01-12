@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
 
-Sitemap: https://walkersumida.github.io/sitemap.xml
+Sitemap: https://sumida.page/sitemap.xml
