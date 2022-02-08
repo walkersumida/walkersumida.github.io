@@ -48,3 +48,6 @@ body {
 .sns-github a:hover {
   color: black;
 }
+.sns-linkedin a:hover {
+  color: #0966C2;
+}
