@@ -35,8 +35,11 @@ body {
   margin-top: 30px;
   margin-bottom: 15px;
 }
+.icons {
+  display: flex;
+  justify-content: center;
+}
 .sns {
-  display: inline-block;
   margin: 0 5px;
 }
 .sns a {
@@ -53,4 +56,7 @@ body {
 }
 .sns-linkedin a:hover {
   color: #0966c2;
+}
+.lapras-img {
+  width: 30px;
 }
