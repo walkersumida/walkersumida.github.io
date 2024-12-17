@@ -35,12 +35,18 @@ body {
   margin-top: 30px;
   margin-bottom: 15px;
 }
+.icons {
+  display: flex;
+  justify-content: center;
+}
 .sns {
-  display: inline-block;
   margin: 0 5px;
 }
 .sns a {
   color: grey;
+}
+.sns-bluesky a:hover {
+  color: #0285FF;
 }
 .sns-twitter a:hover {
   color: #1da1f2;
@@ -53,4 +59,7 @@ body {
 }
 .sns-linkedin a:hover {
   color: #0966c2;
+}
+.lapras-img {
+  width: 30px;
 }
