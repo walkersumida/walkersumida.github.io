@@ -1,56 +1,608 @@
+/* ===================================
+   Base Styles & Variables
+   =================================== */
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --accent-gradient: linear-gradient(135deg, #4dabf7 0%, #667eea 100%);
+  --glow-color: #667eea;
+  --card-bg: rgba(42, 42, 42, 0.85);
+  --card-border: rgba(102, 126, 234, 0.1);
+  --text-primary: #e0e0e0;
+  --text-secondary: #c0c0c0;
+  --bg-dark: #0a0a0a;
+  --bg-section: #1a1a1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   padding-bottom: 150px;
-  font-family: Gothic MB101 Light, Hiragino Kaku Gothic W3 JIS2004, "メイリオ",
-    Meiryo, Verdana, "ＭＳ Ｐゴシック", sans-serif;
-  color: rgba(0, 0, 0, 0.87);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN", "Hiragino Sans", Arial, "Yu Gothic",
+    Meiryo, sans-serif;
+  color: var(--text-primary);
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
+
+/* Background animated gradient */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(77, 171, 247, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===================================
+   Typography
+   =================================== */
+h1 {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  font-size: 2.5rem;
+  text-align: center;
+  position: relative;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--accent-gradient);
+  border-radius: 2px;
+}
+
+h5 {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ===================================
+   Cards with Glassmorphism
+   =================================== */
+.card {
+  background: linear-gradient(135deg, rgba(42, 42, 42, 0.9), rgba(32, 32, 32, 0.9));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(102, 126, 234, 0.5) 50%,
+    transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow:
+    0 8px 32px rgba(102, 126, 234, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
 .top-card {
-  border: none;
+  background: linear-gradient(135deg, rgba(42, 42, 42, 0.95), rgba(32, 32, 32, 0.95));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  animation: fadeIn 1s ease-out;
 }
-.avatar-img {
-  width: 250px;
-  margin: 0 auto;
+
+.card-header {
+  background: linear-gradient(135deg, rgba(51, 51, 51, 0.9), rgba(42, 42, 42, 0.9));
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 1rem;
 }
-.github-stats-area {
-  width: 350px;
-  margin: 0 auto;
-  padding: none;
+
+.card-body {
+  color: var(--text-primary);
 }
-.github-stats {
-  width: 350px;
+
+.card-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
-.grid-style {
-  margin-bottom: 20px;
+
+.card-title {
+  color: var(--text-primary);
+  font-weight: 500;
 }
-.card-style {
-  height: 300px;
-}
+
+/* Card image effects */
 .card-image {
   width: 100px;
   margin: auto;
   margin-top: 10px;
+  transition: transform 0.3s ease;
 }
-.title {
-  margin-top: 30px;
-  margin-bottom: 15px;
+
+.card:hover .card-image {
+  opacity: 1;
 }
+
+/* ===================================
+   Avatar & Profile
+   =================================== */
+.avatar-img {
+  width: 200px;
+  margin: 20px auto 0px;
+  border: 3px solid transparent;
+  background: linear-gradient(#2a2a2a, #2a2a2a) padding-box,
+              var(--primary-gradient) border-box;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar-img:hover {
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+/* ===================================
+   Social Icons
+   =================================== */
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
 .sns {
-  display: inline-block;
-  margin: 0 5px;
+  position: relative;
 }
+
 .sns a {
-  color: grey;
+  color: #a0a0a0;
+  transition: color 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+  display: inline-block;
 }
+
+.sns a:hover {
+  filter: drop-shadow(0 3px 8px rgba(102, 126, 234, 0.3));
+}
+
+.sns-bluesky a:hover {
+  color: #0285FF;
+  filter: drop-shadow(0 5px 15px rgba(2, 133, 255, 0.5));
+}
+
 .sns-twitter a:hover {
   color: #1da1f2;
+  filter: drop-shadow(0 5px 15px rgba(29, 161, 242, 0.5));
 }
+
 .sns-facebook a:hover {
   color: #4267b2;
+  filter: drop-shadow(0 5px 15px rgba(66, 103, 178, 0.5));
 }
+
 .sns-github a:hover {
-  color: black;
+  color: #fff;
+  filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.3));
 }
+
 .sns-linkedin a:hover {
   color: #0966c2;
+  filter: drop-shadow(0 5px 15px rgba(9, 102, 194, 0.5));
+}
+
+.lapras-img {
+  width: 30px;
+  transition: transform 0.3s ease;
+}
+
+.sns-lapras:hover .lapras-img {
+  opacity: 0.9;
+}
+
+/* ===================================
+   GitHub Stats
+   =================================== */
+.github-stats-area {
+  width: 100%;
+  margin: 15px auto 0;
+  position: relative;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.github-stats {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  border-radius: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.github-stats:hover {
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+}
+
+/* ===================================
+   Buttons
+   =================================== */
+.btn-primary {
+  background: var(--primary-gradient);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ===================================
+   Tables
+   =================================== */
+.table {
+  color: var(--text-primary);
+  border-color: rgba(102, 126, 234, 0.1);
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table thead {
+  background: linear-gradient(135deg, rgba(42, 42, 42, 0.9), rgba(32, 32, 32, 0.9));
+}
+
+.table thead th {
+  border-color: rgba(102, 126, 234, 0.1);
+  color: var(--text-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  padding: 15px;
+  position: relative;
+}
+
+.table thead th::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.table thead th:hover::after {
+  transform: scaleX(1);
+}
+
+.table td {
+  border-color: rgba(102, 126, 234, 0.05);
+  color: var(--text-secondary);
+  padding: 12px 15px;
+  transition: background-color 0.2s ease;
+}
+
+.table tbody tr {
+  border-color: rgba(102, 126, 234, 0.05);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(102, 126, 234, 0.05);
+}
+
+.table a {
+  color: #4dabf7;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.table a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  transition: width 0.3s ease;
+}
+
+.table a:hover {
+  color: #74c0fc;
+}
+
+.table a:hover::after {
+  width: 100%;
+}
+
+/* ===================================
+   Profile Sections
+   =================================== */
+.profile-section {
+  background: linear-gradient(135deg, rgba(37, 37, 37, 0.9), rgba(28, 28, 28, 0.9));
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--accent-gradient);
+  border-radius: 12px 0 0 12px;
+}
+
+.profile-section:hover {
+  box-shadow:
+    0 5px 20px rgba(102, 126, 234, 0.1),
+    0 0 30px rgba(102, 126, 234, 0.03);
+}
+
+.profile-section-title {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.profile-section p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===================================
+   Layout & Spacing
+   =================================== */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.grid-style {
+  margin-bottom: 30px;
+}
+
+/* ===================================
+   Animations
+   =================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===================================
+   Scrollbar Customization
+   =================================== */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* ===================================
+   Selection
+   =================================== */
+::selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: #fff;
+}
+
+::-moz-selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: #fff;
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .github-stats-area,
+  .github-stats {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .profile-section {
+    padding: 20px;
+  }
+
+  .icons {
+    gap: 10px;
+  }
+}
+
+/* ===================================
+   Image thumbnail
+   =================================== */
+.img-thumbnail {
+  border: 2px solid transparent;
+  background: linear-gradient(#2a2a2a, #2a2a2a) padding-box,
+              var(--primary-gradient) border-box;
+}
+
+/* ===================================
+   Name Styles
+   =================================== */
+.name-en {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 10px;
+  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+}
+
+.name-jp {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+/* ===================================
+   Loading Animation
+   =================================== */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.loading {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(102, 126, 234, 0.1) 50%,
+    transparent 100%);
+  background-size: 1000px 100%;
 }
